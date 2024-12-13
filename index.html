@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Un nuovo legame</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Urbanist&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --teal: #5FB3B3;
+            --orange: #F9A825;
+            --grey: #808080;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Urbanist', Arial, sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Boogaloo', cursive;
+            text-transform: uppercase;
+        }
+
+        button {
+            font-family: 'Urbanist', Arial, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        a[target="_blank"]::after {
+            content: " ";
+        }
+
+        /* Navbar styles */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            background-color: var(--white);
+            padding: 10px 40px;
+            transition: top 0.3s;
+            height: 80px;
+        }
+
+        .nav-logo {
+            flex: 1;
+        }
+
+        .nav-logo img {
+            height: 50px;
+        }
+
+        .nav-menu {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-items {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .nav-items li {
+            margin: 0 15px;
+        }
+
+        .nav-items li a {
+            text-decoration: none;
+            color: var(--grey);
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-items li a:hover {
+            color: var(--black);
+        }
+
+        .nav-button {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 60px;
+        }
+
+        .nav-button button {
+            padding: 10px 20px;
+            background-color: var(--teal);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-button button:hover {
+            background-color: #4A9A9A;
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            position: absolute;
+            right: 30px;
+        }
+
+        .burger-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--black);
+            margin: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-items {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-items li {
+                margin: 10px 0;
+            }
+
+            .nav-button {
+                margin: 20px 0;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-items li a {
+                max-width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        /* Hero section */
+        #hero .hero-image {
+            background: url('img/open.jpg') center center/cover no-repeat;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        #hero .hero-text {
+            text-align: center;
+            color: var(--white);
+        }
+
+        #hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        #hero p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        #hero button {
+            padding: 15px 30px;
+            background-color: var(--teal);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #hero button:hover {
+            background-color: #4A9A9A;
+        }
+
+        .hero-arrow {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2em;
+            cursor: pointer;
+            color: var(--white);
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .hero-arrow:hover {
+            opacity: 1;
+        }
+
+        /* Second section */
+        #second {
+            padding: 60px 20px;
+        }
+
+        #second .second-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+            flex-wrap: wrap;
+        }
+
+        #second .second-image {
+            flex: 1;
+            margin-right: 40px;
+        }
+
+        #second .second-image img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        #second .second-text {
+            flex: 2;
+            text-align: left;
+        }
+
+        #second p {
+            font-size: 1em;
+        }
+
+        #second ul li {
+            font-size: 1em;
+        }
+
+        #second h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        #second ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        #second ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Third section */
+        #third {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: var(--white);
+        }
+
+        .third-container {
+            background-color: var(--teal);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .third-container h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .third-container p {
+            font-size: 1em;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .third-container button {
+            padding: 10px 20px;
+            background-color: var(--orange);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-bottom: 40px;
+        }
+
+        .third-container button:hover {
+            background-color: #D48806;
+        }
+
+        .capisaldi-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .capisaldi-box {
+            background-color: var(--white);
+            color: var(--black);
+            width: 300px;
+            margin: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+        }
+
+        .capisaldi-box h3 {
+            margin-top: 0;
+        }
+
+        /* Fourth section */
+        #fourth {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        #fourth h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        #fourth p {
+            font-size: 1em;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .soluzioni-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .soluzione-box {
+            width: 300px;
+            margin: 10px;
+            text-align: left;
+        }
+
+        .soluzione-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .soluzione-box h3 {
+            margin-top: 0;
+            margin-bottom: 5px; /* reduce the space between title and description */
+        }
+
+        .soluzione-box p {
+            margin-top: 0; /* no additional spacing above paragraph */
+            font-size: 1em;
+        }
+
+        /* Fifth section */
+        #fifth {
+            padding: 60px 20px;
+        }
+
+        .fifth-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .fifth-left, .fifth-right {
+            width: 45%;
+            margin: 10px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .fifth-left .fifth-image,
+        .fifth-right .fifth-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .fifth-left .fifth-image img,
+        .fifth-right .fifth-image img {
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .fifth-left p,
+        .fifth-right p {
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+
+        .fifth-container {
+            align-items: stretch;
+        }
+
+        /* Sixth section (Team) */
+        #team {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .team-container {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .team-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 0 40px;
+        }
+
+        .team-header-row h2 {
+            margin: 0;
+        }
+
+        .team-header-row button {
+            padding: 10px 20px;
+            background-color: var(--teal);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .team-header-row button:hover {
+            background-color: #4A9A9A;
+        }
+
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .team-member {
+            flex: 1 1 30%;
+            max-width: 30%;
+            margin: 10px;
+            text-align: left;
+        }
+
+        .team-member img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* LinkedIn logo slightly bigger: same height as name. 
+           If name is ~1em (~16px), let's make linkedin ~16px. */
+        .team-member h3 {
+            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            line-height: 1; 
+        }
+
+        .team-member h3 a img {
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+        }
+
+        /* Name and LinkedIn -> fancy tag below -> description below 
+           reduce margin to be basically zero between elements */
+        .fancy-tag {
+            text-decoration: line-through;
+            color: rgba(128, 128, 128, 0.5);
+            font-weight: 300;
+            display: block;
+            margin: 2px 0 0 0; /* almost zero vertical spacing */
+        }
+
+        .team-member p .first-line {
+            font-weight: 900;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .team-member p {
+            margin: 2px 0; /* reduce vertical spacing */
+        }
+
+        @media (max-width: 1024px) {
+            .team-member {
+                flex: 1 1 45%;
+                max-width: 45%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .team-member {
+                flex: 1 1 90%;
+                max-width: 90%;
+            }
+
+            .team-header-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+
+        /* Contact section */
+        #contact {
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        #contact h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+
+        #contact form {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        #contact label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #contact input, #contact select, #contact textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+
+        #contact input:focus, #contact select:focus, #contact textarea:focus {
+            border-color: var(--teal);
+            outline: none;
+        }
+
+        #contact button {
+            padding: 15px 30px;
+            background-color: var(--orange);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-family: 'Urbanist', Arial, sans-serif;
+        }
+
+        #contact button:hover {
+            background-color: #D48806;
+        }
+
+        #thank-you-message {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--white);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        #thank-you-message.active {
+            display: block;
+        }
+
+        /* FAQ section */
+        #faq {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        #faq h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        #faq p {
+            font-size: 1em;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            background-color: var(--teal);
+            color: var(--white);
+            padding: 15px;
+            cursor: pointer;
+            position: relative;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5em;
+            margin-left: auto;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: #f1f1f1;
+            padding: 0 15px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--white);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-contact,
+        .footer-logo,
+        .footer-social {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-contact {
+            justify-content: flex-start;
+        }
+
+        .footer-logo {
+            justify-content: center;
+        }
+
+        .footer-social {
+            justify-content: flex-end;
+        }
+
+        .footer-contact a {
+            color: var(--black);
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        .footer-social a {
+            margin: 0 10px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-social a:hover img {
+            filter: hue-rotate(90deg);
+        }
+
+        .footer-logo img {
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-logo">
+            <a href="#hero" target="_blank"><img src="img/logo.png" alt="Logo"></a>
+        </div>
+        <div class="nav-menu">
+            <ul class="nav-items">
+                <li><a href="#hero" target="_blank">Home</a></li>
+                <li><a href="#third" target="_blank">Capisaldi</a></li>
+                <li><a href="#fourth" target="_blank">Soluzioni</a></li>
+                <li><a href="#team" target="_blank">Chi siamo</a></li>
+                <li><a href="#faq" target="_blank">FAQ</a></li>
+            </ul>
+        </div>
+        <div class="nav-button">
+            <button onclick="scrollToContact()">Contattaci</button>
+        </div>
+        <div class="burger-menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- First Section -->
+    <section id="hero">
+        <div class="hero-image">
+            <div class="hero-text">
+                <h1>Un nuovo legame</h1>
+                <p>Rinforziamo il legame tra brand e territorio, valorizzando il patrimonio e gli spazi urbani.</p>
+                <button onclick="scrollToContact()">Contattaci</button>
+            </div>
+            <a href="#second" class="hero-arrow" target="_blank">
+                &#x25BC;
+            </a>
+        </div>
+    </section>
+
+    <!-- Second Section -->
+    <section id="second">
+        <div class="second-container">
+            <div class="second-image">
+                <img src="img/catania1.jpg" alt="Immagine" target="_blank">
+            </div>
+            <div class="second-text">
+                <h2>Talìa 'cca!</h2>
+                <p>Dall’ideazione, all’esecuzione, fino al resoconto dei risultati, progettiamo installazioni temporanee e permanenti, fisse o interattive, per aiutare i nostri clienti a lasciare un segno sul territorio valorizzando spazi pubblici inutilizzati, con il fine di integrare il panorama cittadino.
+
+    Desideriamo arredare e prenderci cura di Catania come faremmo con casa nostra, così che tutti i cittadini possano tornare a sentirla casa propria.</p>
+                <ul>
+                    <li>Ricerca delle necessità e dell'impatto previsto</li>
+                    <li>Creatività su misura per ogni occasione</li>
+                    <li>Produzione con il supporto dei creativi locali</li>
+                    <li>Comunicazione della campagna</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Third Section -->
+    <section id="third">
+        <div class="third-container">
+            <h2>I nostri capisaldi</h2>
+            <p>Il fine è destare curiosità nei cittadini e nel passante, generare momenti di aggregazione sociale e contemporaneamente contribuire ad aumentare l’attrattività della città promuovendo i valori del cliente.</p>
+            <button onclick="scrollToContact()">Scopri di più</button>
+            <div class="capisaldi-container">
+                <div class="capisaldi-box">
+                    <h3>Guerrilla</h3>
+                    <p>Sfruttare l'effetto sorpresa per raggiungere la target audience. Le risorse investite sono il tempo, l'energia e l'immaginazione anziché il denaro.</p>
+                </div>
+                <div class="capisaldi-box">
+                    <h3>Placemaking</h3>
+                    <p>Collaborazione attiva fra brand, amministrazioni e cittadini. Ovvero, fra tutti gli attori coinvolti nel cambiamento delle città.</p>
+                </div>
+                <div class="capisaldi-box">
+                    <h3>Ambient marketing</h3>
+                    <p>Campagne pubblicitarie in 3 dimensioni integrate negli spazi pubblici della città, per destare curiosità nei cittadini.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fourth Section -->
+    <section id="fourth">
+        <h2>Le nostre soluzioni preferite</h2>
+        <p>Con l’obiettivo di contribuire al progresso artistico, comunicativo e culturale locale, collaboriamo con istituzioni, artisti e designer per creare campagne che possano arricchire la città.
+    Lavorare con i creativi locali ci apre infinite porte, qui alcuni esempi:</p>
+        <div class="soluzioni-container">
+            <div class="soluzione-box">
+                <img src="img/soluzione1.jpg" alt="Soluzione 1" target="_blank">
+                <h3>Giganti urbani</h3>
+                <p>Creiamo installazioni morbide o rigide a grandezza umana. Raccontiamo i tuoi prodotti in una nuova veste, integrandolo negli spazi urbani di tutti i giorni.</p>
+            </div>
+            <div class="soluzione-box">
+                <img src="img/soluzione2.jpg" alt="Soluzione 2" target="_blank">
+                <h3>Cacce al tesoro</h3>
+                <p>Spargiamo per la città piccole opere o indizi, creando una storia coesa che porti i cittadini a esplorare le strade per risolvere missioni o vincere premi.</p>
+            </div>
+            <div class="soluzione-box">
+                <img src="img/soluzione3.jpg" alt="Soluzione 3" target="_blank">
+                <h3>Storie sui muri</h3>
+                <p>Rappresentiamo il tuo brand intrecciandolo con il folklore e le tradizioni locali, creando uno o più murales dalle narrative coinvolgenti.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fifth Section -->
+    <section id="fifth">
+        <div class="fifth-container">
+            <div class="fifth-left">
+                <div class="fifth-image"><img src="img/catania2.jpg" alt="Catania 2" target="_blank"></div>
+                <p>Sogniamo una Catania vibrante, efficiente, piena di spazi di aggregazione sociale; e per realizzarla vogliamo dar voce al potenziale inespresso della creatività locale.</p>
+                <div class="fifth-image"><img src="img/catania3.jpg" alt="Catania 3" target="_blank"></div>
+            </div>
+            <div class="fifth-right">
+                <div class="fifth-image"><img src="img/catania4.jpg" alt="Catania 4" target="_blank"></div>
+                <p>Il nostro scopo è ripensare il legame fra pubblico e privato, fra aziende e territorio, per promuovere una collaborazione attiva fra brand, amministrazioni e cittadini.</p>
+                <div class="fifth-image"><img src="img/catania5.jpg" alt="Catania 5" target="_blank"></div>
+                <div class="fifth-image"><img src="img/catania6.jpg" alt="Catania 6" target="_blank"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sixth Section -->
+    <section id="team">
+        <div class="team-container">
+            <div class="team-header-row">
+                <h2>Chi siamo?</h2>
+                <button onclick="scrollToContact()">Contattaci</button>
+            </div>
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="img/daniele.png" alt="Daniele Belfiore">
+                    <h3>Daniele Belfiore
+                        <a href="https://www.linkedin.com/in/daniele-belfiore/" target="_blank">
+                            <img src="img/linkedin.svg" alt="LinkedIn">
+                        </a>
+                    </h3>
+                    <div class="fancy-tag">CEO & Co-Founder</div>
+                    <p><span class="first-line">Non sappiamo cosa faccia.</span>
+                    Ha girato politecnici e business school, ma ti parlerà solo dei suoi 5 mesi in Australia.</p>
+                </div>
+
+                <div class="team-member">
+                    <img src="img/saverio.png" alt="Saverio Giannotta">
+                    <h3>Saverio Giannotta
+                        <a href="https://www.linkedin.com/in/saveriogiannotta/" target="_blank">
+                            <img src="img/linkedin.svg" alt="LinkedIn">
+                        </a>
+                    </h3>
+                    <div class="fancy-tag">COO & Co-Founder</div>
+                    <p><span class="first-line">Quello che ci sa gestire.</span>
+                    Il nostro coach, nel tempo libero mangia macine e migliora il mondo con lo sport.</p>
+                </div>
+
+                <div class="team-member">
+                    <img src="img/giulia.png" alt="Giulia Pappalardo">
+                    <h3>Giulia Pappalardo
+                        <a href="https://www.linkedin.com/in/giulia-pappalardo-1a779b1bb/" target="_blank">
+                            <img src="img/linkedin.svg" alt="LinkedIn">
+                        </a>
+                    </h3>
+                    <div class="fancy-tag">Data Scientist & Social Media Manager</div>
+                    <p><span class="first-line">Quella che ci connette.</span>
+                    Data Scientist per lo stipendio e influencer per passione. Ha gli sconti da Polaroid.</p>
+                </div>
+
+                <div class="team-member">
+                    <img src="img/emma.png" alt="Emma Recupero">
+                    <h3>Emma Recupero
+                        <a href="https://www.linkedin.com/in/emma-recupero-6179b02b5/" target="_blank">
+                            <img src="img/linkedin.svg" alt="LinkedIn">
+                        </a>
+                    </h3>
+                    <div class="fancy-tag">Copywriter & Communication Specialist</div>
+                    <p><span class="first-line">Quella che ci racconta.</span>
+                    La prima che ci ha risposto quando cercavamo un responsabile comunicazione, colpo di fulmine.</p>
+                </div>
+
+                <div class="team-member">
+                    <img src="img/romano.png" alt="Romano Lombardo">
+                    <h3>Romano Lombardo
+                        <a href="https://www.linkedin.com/in/romano-lombardo-b3538027b/" target="_blank">
+                            <img src="img/linkedin.svg" alt="LinkedIn">
+                        </a>
+                    </h3>
+                    <div class="fancy-tag">Executive Account Manager</div>
+                    <p><span class="first-line">Quello che ti parlerà troppo.</span>
+                    Ti darà fastidio quando risponderà "👍🏻" e preferirà chiamarti, poi sentirai la magia.</p>
+                </div>
+
+                <div class="team-member">
+                    <img src="img/marcello.png" alt="Marcello Persico">
+                    <h3>Marcello Persico
+                        <a href="https://www.linkedin.com/in/marcello-persico-404431119/" target="_blank">
+                            <img src="img/linkedin.svg" alt="LinkedIn">
+                        </a>
+                    </h3>
+                    <div class="fancy-tag">Product Engineer</div>
+                    <p><span class="first-line">Quello che sa progettare.</span>
+                    Marcello è Marcello, e adesso anche alla Dutch Design Week se ne sono resi conto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seventh Section -->
+    <section id="contact">
+        <h2>Contattaci</h2>
+        <form id="contactForm">
+            <label for="fullname">Nome Completo:</label>
+            <input type="text" id="fullname" name="fullname" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="ruolo">Qual è il tuo ruolo?</label>
+            <select id="ruolo" name="ruolo">
+                <option value="artista">Artista</option>
+                <option value="imprenditore">Imprenditore</option>
+            </select>
+            <label for="richiesta">Richiesta:</label>
+            <textarea id="richiesta" name="richiesta" required></textarea>
+            <!-- Ensure the button is of type submit -->
+            <button type="submit">Invia</button>
+        </form>
+    </section>
+    
+    <div id="thank-you-message">
+        Grazie per averci contattato! La tua richiesta è stata inviata con successo.
+    </div>
+
+    <!-- Eighth Section -->
+    <section id="faq">
+        <h2>Sì, ma..?</h2>
+        <p>Talìa nasce con l’intenzione di valorizzare l’unicità della cultura e del territorio catanese.
+        Diversi stakeholder e attori sono coinvolti nel processo, e dunque molti dubbi nascono</p>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">E se distruggono l'installazione o se la portano a casa?</div>
+                <div class="faq-answer">Purtroppo sappiamo quanto il problema del vandalismo sia radicato. Per questo, progettiamo installazioni dotati di meccanismi di sicurezza integrati.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Come misurate il ritorno della campagna?</div>
+                <div class="faq-answer">Addestrati data scientist, siamo lieti di definire la magia negli occhi di chi guarda (e spende). Tutelando la privacy dei cittadini, attivamente o passivamente coinvolti nelle nostre campagne, implementeremo della sensoristica nel luogo e combineremo le analisi da social network, visite e vendite per misurare l'impatto ottenuto.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Chi può collaborare come creativo per la campagna?</div>
+                <div class="faq-answer">Lanceremo bandi ed entreremo in contatto con istituzioni e realtà private nel catanese, per coinvolgere sia artisti, designer, e creativi professionisti, che quelli alle prime armi.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Non serviranno mica autorizzazioni speciali?</div>
+                <div class="faq-answer">Il team e la nostra rete di collaboratori coordinano tutte le fasi del progetto. Tra queste, le trattative con la pubblica amministrazione o i locali privati, per una procedura più trasparente possibile.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-contact">
+            <a href="mailto:info@talia.my" target="_blank">info@talia.my</a>
+        </div>
+        <div class="footer-logo">
+            <a href="#hero" target="_blank"><img src="img/logo.png" alt="Logo"></a>
+        </div>
+        <div class="footer-social">
+            <a href="#" target="_blank">
+                <img src="img/linkedin.svg" alt="LinkedIn" width="30" height="30">
+            </a>
+            <a href="#" target="_blank">
+                <img src="img/instagram.svg" alt="Instagram" width="30" height="30">
+            </a>
+        </div>
+    </footer>
+
+    <!-- JS scripts -->
+    <script>
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleMenu() {
+            var navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Navbar hide/show on scroll
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('nav');
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                // Scrolling down
+                navbar.style.top = '-80px';
+            } else {
+                // Scrolling up
+                navbar.style.top = '0';
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(function(item) {
+                item.querySelector('.faq-question').addEventListener('click', function() {
+                    item.classList.toggle('active');
+                });
+            });
+        });
+
+        const contactForm = document.getElementById('contactForm');
+        const thankYouMessage = document.getElementById('thank-you-message');
+
+        // Replace this with your actual deployed Google Apps Script URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbz3iTGHloD7rX5LcLbC5MMAtD2LDc69vuqIJFQCIzBe4AJcERNRR6rdLDKqs0_xLfgj1g/exec'; 
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop the default form submission
+
+            const formData = new FormData(contactForm);
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    // On success, reset the form and show the thank you message
+                    contactForm.reset();
+                    thankYouMessage.classList.add('active');
+                    setTimeout(() => {
+                        thankYouMessage.classList.remove('active');
+                    }, 3000);
+                })
+                .catch(error => console.error('Error!', error.message));
+        });
+
+
+
+        
+    </script>
+</body>
+</html>
